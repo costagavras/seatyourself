@@ -8,6 +8,33 @@
 
 User.destroy_all
 Restaurant.destroy_all
+Neighbourhood.destroy_all
+Category.destroy_all
+
+Category.create(
+  name: "Italian"
+)
+
+Category.create(
+  name: "Asian"
+)
+
+Category.create(
+  name: "Comfort Food"
+)
+
+Neighbourhood.create(
+  name: "Downtown"
+)
+
+Neighbourhood.create(
+  name: "East York"
+)
+
+Neighbourhood.create(
+  name: "Mississauga"
+)
+
 
 Restaurant.create(
 capacity: 150,
@@ -15,9 +42,36 @@ opening_hours: 12,
 closing_hours: 2,
 address: "42 Tagliatelle str.",
 price_range: 2,
-neighbourhood_id: "Etobicoke",
+neighbourhood_id: Neighbourhood.first.id,
 summary: "Your italian food from la nonna",
 menu: "Ipse lorem",
-category_id: 1,
+category_id: Category.first.id,
 name: "Little Nero",
+picture_url: "https://res.cloudinary.com/simpleview/image/upload/crm/napavalley/HR-azzurro-exterior-credit-Mario-Piombo-b1dd5bb85056a36_88281807-5056-a36a-08a3b32db2fe41f8.jpg")
+
+
+Restaurant.create(
+capacity: 100,
+opening_hours: 12,
+closing_hours: 8,
+address: "220 King Street West",
+price_range: 3,
+neighbourhood_id: Neighbourhood.first.id,
+summary: "Shitz Binary",
+menu: "01010111010101101010101",
+category_id: Category.last.id,
+name: "Meat Your Maker",
+picture_url: "https://res.cloudinary.com/simpleview/image/upload/crm/napavalley/HR-azzurro-exterior-credit-Mario-Piombo-b1dd5bb85056a36_88281807-5056-a36a-08a3b32db2fe41f8.jpg")
+
+Restaurant.create(
+capacity: 50,
+opening_hours: 12,
+closing_hours: 2,
+address: "Square One",
+price_range: 3,
+neighbourhood_id: Neighbourhood.all.sample.id,
+summary: "Fancy Food Stuffs",
+menu: "Ipse lorem",
+category_id: Category.first.id,
+name: "Asian Wok",
 picture_url: "https://res.cloudinary.com/simpleview/image/upload/crm/napavalley/HR-azzurro-exterior-credit-Mario-Piombo-b1dd5bb85056a36_88281807-5056-a36a-08a3b32db2fe41f8.jpg")
