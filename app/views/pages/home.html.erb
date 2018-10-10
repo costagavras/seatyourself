@@ -1,1 +1,8 @@
 <h1>HOMEPAGE</h1>
+
+<% if current_user %>
+  <%= current_user.email %>
+  <%= link_to "Log out", session_path("current"), :method => :delete %>
+<% else%>
+  <%= link_to "Sign In", new_session_url %>
+<% end %>
