@@ -5,11 +5,11 @@
       |                           |password|
       |                           +--------+
 +-------------+                      |1
-|Join         |                      |
+|Owner Join   |                      |
 |user_id      |                      |
 |restaurant_id|                      |many
 +-------------+                +-------------+
-   |many                       |Reservations |
+      |many                    |Reservation  |
 +----------------+             |date/time    |
 |Restaurant      +-------------+party_size   |
 |capacity        |1        many|user_id      |
