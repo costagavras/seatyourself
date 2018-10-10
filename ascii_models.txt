@@ -1,18 +1,18 @@
-+-------------+                +--------+
-|Owner        |                |Customer|
-|name         |                |name    |
-|             |                |email   |
-+-------------+                |password|
-   |many                       +--------+
-+----------+                      |1
-|Join      |                      |
-|owner_id  |                      |
-|restaurant|                      |many
-+----------+                   +-------------+
+                                  +--------+
+                                  |User    |
+                                  |name    |
+      +---------------------------|email   |
+      |                           |password|
+      |                           +--------+
++-------------+                      |1
+|Join         |                      |
+|user_id      |                      |
+|restaurant_id|                      |many
++-------------+                +-------------+
    |many                       |Reservations |
 +----------------+             |date/time    |
 |Restaurant      +-------------+party_size   |
-|capacity        |1        many|customer_id  |
+|capacity        |1        many|user_id      |
 |operating_hours |             |restaurant_id|
 |address         |             |             |
 |price_range     |             +-------------+
