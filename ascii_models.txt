@@ -20,7 +20,7 @@
 |summary         |
 |category_id     |many
 |menu            +-----------+
-|rating          |           |
+|                |           |
 +----------------+           |
       |many                  |
       |                      |
