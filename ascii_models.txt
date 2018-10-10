@@ -10,14 +10,22 @@
 |restaurant|                      |many
 +----------+                   +-------------+
    |many                       |Reservations |
- +---------------+             |date/time    |
- |Restaurant     +-------------+party_size   |
- |capacity       |1        many|customer_id  |
- |operating_hours|             |restaurant_id|
- |address        |             |             |
- |price_range    |             +-------------+
- |neighbourhood  |
- |summary        |
- |menu           |
- |               |
- +---------------+
++----------------+             |date/time    |
+|Restaurant      +-------------+party_size   |
+|capacity        |1        many|customer_id  |
+|operating_hours |             |restaurant_id|
+|address         |             |             |
+|price_range     |             +-------------+
+|neighbourhood_id|
+|summary         |
+|category_id     |many
+|menu            +-----------+
+|rating          |           |
++----------------+           |
+      |many                  |
+      |                      |
+      |1                     |1
++-------------+         +---------+
+|Neighbourhood|         |Category |
+|name         |         |name     |
++-------------+         +---------+
