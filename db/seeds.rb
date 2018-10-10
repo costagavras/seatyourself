@@ -36,7 +36,7 @@ Neighbourhood.create(
 )
 
 
-Restaurant.create(
+  Restaurant.create(
 capacity: 150,
 opening_hours: 12,
 closing_hours: 2,
