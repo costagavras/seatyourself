@@ -1,12 +1,10 @@
-<h1>NEW SESSION</h1>
-
-<br />
+<p>- please sign in -</p>
 
 <%= form_for :session, url: sessions_path do |f| %>
 
   <%= render "shared/user_form", f: f %>
 
-  <%= link_to "need an account?", new_user_path, class: "signup_btn" %>
-  <%= f.submit "Login" %>
+  <%= link_to "create an account", new_user_path, class: "signup_btn" %>
+  <%= f.submit "Sign In" %>
 
 <% end %>
