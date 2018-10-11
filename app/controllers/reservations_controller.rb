@@ -2,10 +2,14 @@ class ReservationsController < ApplicationController
 
   before_action :find_reservation, only: [:show, :edit, :update, :destroy]
   before_action :find_restaurant, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :check_reservation_date, only: [:create, :update]
+  before_action :check_restaurant_capacity, only: [:create, :update]
+  before_action :check_restaurant_operating_hours, only: [:create, :update]
+
 
   def index
     #display all reservations pertaining to current user
-    @reservations = current_user.reservations.all
+    @reservations = Reservation.all
   end
 
   def show
@@ -68,6 +72,44 @@ class ReservationsController < ApplicationController
 
   def find_restaurant
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+  end
+
+  #check if date is in the past
+  def check_reservation_date
+    reservation_date_time = params[:reservation][:date_time].split('T')
+    reservation_date = reservation_date_time[0].split('-')
+    reservation_date_object = Time.new(reservation_date[0].to_i, reservation_date[1].to_i, reservation_date[2].to_i)
+
+    if(reservation_date_object < Time.now)
+      flash[:notice] = "Reservation cannot be made in the past :("
+      redirect_to new_restaurant_reservation_path
+    end
+  end
+
+  def check_restaurant_capacity
+    restaurant = find_restaurant
+
+    current_reservations = restaurant.reservations
+    restaurant_capacity = restaurant.capacity
+
+    puts "---------------"
+    p restaurant_capacity
+
+    current_reservations.each do |reservation|
+      restaurant_capacity -= reservation.party_size
+    end
+
+    p restaurant_capacity
+    puts "---------------"
+
+    if(restaurant_capacity < params[:reservation][:party_size].to_i)
+      flash[:notice] = "This Restaurant is fully booked :("
+      redirect_to new_restaurant_reservation_path
+    end
+  end
+
+  def check_restaurant_operating_hours
+
   end
 
 end
