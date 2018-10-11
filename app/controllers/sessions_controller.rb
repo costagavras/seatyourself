@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'user_portal'
+
   def new
     flash[:previous_page] = request.referer
   end

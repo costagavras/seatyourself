@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'user_portal'
+
   def new
     @user = User.new
     flash[:previous_page] = request.referer
