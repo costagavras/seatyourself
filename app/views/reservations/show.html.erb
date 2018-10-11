@@ -4,5 +4,5 @@
 <p><%= @reservation.user_id %></p>
 <p><%= @reservation.restaurant_id %></p>
 
-  <%= link_to("Delete", reservation_path(@reservation), method: :delete, data: {confirm: "Are you sure you want to delete this reservation?"})  %>
+  <%= link_to("Delete", restaurant_reservation_path(@restaurant, @reservation), method: :delete, data: {confirm: "Are you sure you want to delete this reservation?"})  %>
 <hr>

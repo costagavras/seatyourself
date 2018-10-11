@@ -8,6 +8,7 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find_by(id: params[:id])
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
   end
 
   def new
@@ -16,10 +17,12 @@ class ReservationsController < ApplicationController
   end
 
   def create
+
+
     @reservation = Reservation.new(date_time:  params[:reservation][:date_time],
                                    party_size: params[:reservation][:party_size],
-                                   user_id: params[:reservation][:user_id],
-                                   restaurant_id: params[:reservation][:restaurant_id])
+                                   user_id: current_user.id,
+                                   restaurant_id: params[:restaurant_id])
 
     if @reservation.save
         flash[:notice] = "Your reservation was made sucessfully"
@@ -41,8 +44,8 @@ class ReservationsController < ApplicationController
 
     @reservation.date_time =  params[:reservation][:date_time];
     @reservation.party_size = params[:reservation][:party_size];
-    @reservation.user_id = params[:reservation][:user_id];
-    @reservation.restaurant_id = params[:reservation][:restaurant_id];
+    @reservation.user_id = current_user.id;
+    @reservation.restaurant_id = params[:restaurant_id];
 
 
     if @reservation.save
