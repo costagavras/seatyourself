@@ -10,6 +10,7 @@ User.destroy_all
 Restaurant.destroy_all
 Neighbourhood.destroy_all
 Category.destroy_all
+Reservation.destroy_all
 
 Category.create(
   name: "Italian"
@@ -75,3 +76,23 @@ menu: "Ipse lorem",
 category_id: Category.first.id,
 name: "Asian Wok",
 picture_url: "https://res.cloudinary.com/simpleview/image/upload/crm/napavalley/HR-azzurro-exterior-credit-Mario-Piombo-b1dd5bb85056a36_88281807-5056-a36a-08a3b32db2fe41f8.jpg")
+
+
+###Stephen Adding Reservation Seeds###
+date_time1 = DateTime.new(2018,10,10,4,50,0)
+Reservation.create(date_time: date_time1,
+                   party_size: 5,
+                   user_id: 1,
+                   restaurant_id: 1)
+
+date_time2 = DateTime.new(2018,10,12,4,50,0)
+Reservation.create(date_time: date_time2,
+                   party_size: 7,
+                   user_id: 2,
+                   restaurant_id: 2)
+
+date_time3 = DateTime.new(2018,10,11,4,50,0)
+Reservation.create(date_time: date_time3,
+                   party_size: 7,
+                   user_id: 2,
+                   restaurant_id: 2)
