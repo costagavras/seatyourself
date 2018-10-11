@@ -1,7 +1,7 @@
 <%= form_for reservation, url: {action: "create"} do |f| %>
   <div class="reservation_form">
     <%= f.label :date_time %>
-    <%= f.date_field :date_time %>
+    <%= f.datetime_local_field :date_time %>
   </div>
 
   <div class="reservation_form">

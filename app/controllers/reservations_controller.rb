@@ -16,15 +16,14 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    #create the new reservation based on user input
-    # @reservation = Reservation.new(datetime: =  params[:reservation][:datetime],
-    #                                party_size: =  params[:reservation][:party_size],
-    #                                user_id: =  params[:user_id],
-    #                                restaurant_id: = params[:restaurant_id])
+    @reservation = Reservation.new(date_time:  params[:reservation][:date_time],
+                                   party_size: params[:reservation][:party_size],
+                                   user_id: params[:reservation][:user_id],
+                                   restaurant_id: params[:reservation][:restaurant_id])
 
     if @reservation.save
         flash[:notice] = "Your reservation was made sucessfully"
-        redirect_to resteraunt_path
+        redirect_to reservations_path
     else
         @reservation.errors.full_messages
         render :new
@@ -38,13 +37,14 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    # @reservation = Reservation.new(datetime: =  params[:reservation][:datetime],
-    #                                party_size: =  params[:reservation][:party_size],
-    #                                user_id: =  params[:user_id],
-    #                                restaurant_id: = params[:restaurant_id])
+    @reservation = Reservation.new(date_time:  params[:reservation][:date_time],
+                                   party_size: params[:reservation][:party_size],
+                                   user_id: params[:reservation][:user_id],
+                                   restaurant_id: params[:reservation][:restaurant_id])
+
     if @reservation.save
       flash[:notice] = "Your reservation was made sucessfully"
-      redirect_to resteraunt_path
+      redirect_to reservations_path
     else
       @reservation.errors.full_messages
       render :edit
