@@ -1,39 +1,46 @@
 <h1>RESTAURANT VIEW (INDEX LIST)</h1>
 
-<div class="drop_downs">
+<form action="/restaurants" method="get">
+  <div class="drop_downs">
+    </div>
+    <div class="dd_category">
+      <label for="category_restaurant">Category</label>
+      <select id="category_restaurant" name="category">
+        <option value="nada">Please choose a category...</option>
+        <option value="it">Italian</option>
+        <option value="as">Asian</option>
+        <option value="me">Middle Eastern</option>
+        <option value="cf">Comfort food</option>
+      </select>
+    </div class="dd_neighbourhood">
+      <label for="neighbourhood_restaurant">Neighbourhood</label>
+      <select id="neighbourhood_restaurant" name="neighbourhood">
+        <option value="nada">Please choose a neighbourhood...</option>
+        <option value="dt">Downtown</option>
+        <option value="ey">East York</option>
+        <option value="pd">Parkdale</option>
+        <option value="ec">Etobicoke</option>
+      </select>
+    </div>
+    <div class="dd_price_range">
+      <label for="price_range_restaurant">Price range</label>
+      <select id="price_range_restaurant" name="price_range">
+        <option value="nada">Please choose a price range...</option>
+        <option value="hi">High</option>
+        <option value="av">Average</option>
+        <option value="lo">Low</option>
+      </select>
+    </div>
   </div>
-  <div class="dd_category">
-    <label for="category_restaurant">Category</label>
-    <select id="category_restaurant" name="category">
-      <option value="nada">Please choose a category...</option>
-      <option value="it">Italian</option>
-      <option value="as">Asian</option>
-      <option value="me">Middle Eastern</option>
-      <option value="cf">Comfort food</option>
-    </select>
+  <div
+    <input type="submit">
+    <button type="submit">
+      <h3>Search!</h3>
+    </button>
   </div>
-  <div class="dd_neighbourhood">
-    <label for="neighbourhood_restaurant">Neighbourhood</label>
-    <select id="neighbourhood_restaurant" name="neighbourhood">
-      <option value="nada">Please choose a neighbourhood...</option>
-      <option value="dt">Downtown</option>
-      <option value="ey">East York</option>
-      <option value="pd">Parkdale</option>
-      <option value="ec">Etobicoke</option>
-    </select>
-  </div>
-  <div class="dd_price_range">
-    <label for="price_range_restaurant">Price range</label>
-    <select id="price_range_restaurant" name="price_range">
-      <option value="nada">Please choose a price range...</option>
-      <option value="hi">High</option>
-      <option value="av">Average</option>
-      <option value="lo">Low</option>
-    </select>
-  </div>
-</div>
-<hr>
+</form>
 
+<hr>
 <div>
   <% @restaurants.each do |restaurant|%>
     <ul>
