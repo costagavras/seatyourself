@@ -23,4 +23,10 @@ class UsersController < ApplicationController
       render new_user_path
     end
   end
+
+  def show
+    if current_user
+      @user = current_user
+    end
+  end
 end

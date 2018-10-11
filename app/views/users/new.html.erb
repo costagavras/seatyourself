@@ -9,7 +9,7 @@
   <%= render "shared/user_form", f: f %>
 
   <% f.label :password_confirmation %>
-  <%= f.text_field :password_confirmation, placeholder: "Confirm Password" %>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
 </div>
 
   <%= link_to "sign in", new_session_path, class: "signup_btn" %>
