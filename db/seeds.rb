@@ -36,8 +36,11 @@ Neighbourhood.create(
   name: "Mississauga"
 )
 
+Neighbourhood.create(
+  name: "Parkdale"
+)
 
-  Restaurant.create(
+  Restaurant.create!(
 capacity: 150,
 opening_hours: 12,
 closing_hours: 2,
@@ -51,7 +54,7 @@ name: "Little Nero",
 picture_url: "https://res.cloudinary.com/simpleview/image/upload/crm/napavalley/HR-azzurro-exterior-credit-Mario-Piombo-b1dd5bb85056a36_88281807-5056-a36a-08a3b32db2fe41f8.jpg")
 
 
-Restaurant.create(
+Restaurant.create!(
 capacity: 100,
 opening_hours: 12,
 closing_hours: 8,
@@ -64,7 +67,7 @@ category_id: Category.last.id,
 name: "Meat Your Maker",
 picture_url: "https://res.cloudinary.com/simpleview/image/upload/crm/napavalley/HR-azzurro-exterior-credit-Mario-Piombo-b1dd5bb85056a36_88281807-5056-a36a-08a3b32db2fe41f8.jpg")
 
-Restaurant.create(
+Restaurant.create!(
 capacity: 50,
 opening_hours: 12,
 closing_hours: 2,
