@@ -1,0 +1,18 @@
+<h1>Restaurant: <%= @restaurant.name %></h1>
+
+<%= link_to('Back to restaurants index', restaurants_path) %>
+<hr>
+<div>
+  <p> Description: <%= @restaurant.name %></p>
+  <%= image_tag(@restaurant.picture_url) %>
+
+  <p> Summary: <%= @restaurant.summary %></p>
+  <%= link_to('Website', "#") %>
+  <p> Category: <%= @restaurant.category_id %></p>
+  <p> Neighbourhood: <%= @restaurant.neighbourhood %></p>
+  <p> Price range: <%= @restaurant.price_range %></p>
+  <p> Opening hours: <%= @restaurant.opening_hours %></p>
+  <p> Closing hours: <%= @restaurant.closing_hours %></p>
+  <p> Menu: <%= @restaurant.menu %></p>
+  <p> Address: <%= @restaurant.address %></p>
+</div>
