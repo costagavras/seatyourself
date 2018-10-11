@@ -7,10 +7,9 @@
       <label for="category_restaurant">Category</label>
       <select id="category_restaurant" name="category">
         <option value="nada">Please choose a category...</option>
-        <option value="1">Italian</option>
-        <option value="2">Asian</option>
-        <option value="3">Middle Eastern</option>
-        <option value="4">Comfort food</option>
+        <% @categories.each do |category| %>
+          <option value="<%=category.id%>"> <%="#{category.name}"%> </option>
+        <% end %>
       </select>
     </div class="dd_neighbourhood">
       <label for="neighbourhood_restaurant">Neighbourhood</label>
