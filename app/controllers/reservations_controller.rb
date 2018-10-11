@@ -75,10 +75,21 @@ class ReservationsController < ApplicationController
   end
 
   #check if date is in the past
-  def check_reservation_date
+  def generate_reservation_date_object
     reservation_date_time = params[:reservation][:date_time].split('T')
     reservation_date = reservation_date_time[0].split('-')
-    reservation_date_object = Time.new(reservation_date[0].to_i, reservation_date[1].to_i, reservation_date[2].to_i)
+    reservation_time = reservation_date_time[1].split(':')
+    reservation_date_object = DateTime.new(reservation_date[0].to_i,
+                                           reservation_date[1].to_i,
+                                           reservation_date[2].to_i,
+                                           reservation_time[0].to_i,
+                                           reservation_time[1].to_i)
+    return reservation_date_object
+  end
+
+  def check_reservation_date
+
+    reservation_date_object = generate_reservation_date_object
 
     if(reservation_date_object < Time.now)
       flash[:notice] = "Reservation cannot be made in the past :("
@@ -92,15 +103,14 @@ class ReservationsController < ApplicationController
     current_reservations = restaurant.reservations
     restaurant_capacity = restaurant.capacity
 
-    puts "---------------"
-    p restaurant_capacity
+    reservation_date_object = generate_reservation_date_object
 
     current_reservations.each do |reservation|
-      restaurant_capacity -= reservation.party_size
-    end
+      if(reservation.date_time <= reservation_date_object &&  reservation_date_object < reservation.date_time + (60*60))
+        restaurant_capacity -= reservation.party_size
+      end
 
-    p restaurant_capacity
-    puts "---------------"
+    end
 
     if(restaurant_capacity < params[:reservation][:party_size].to_i)
       flash[:notice] = "This Restaurant is fully booked :("
@@ -109,6 +119,24 @@ class ReservationsController < ApplicationController
   end
 
   def check_restaurant_operating_hours
+    restaurant = find_restaurant
+    reservation_date_time = generate_reservation_date_object
+
+    reservation_time = reservation_date_time.strftime("%H").to_i
+
+    if restaurant.opening_hours > restaurant.closing_hours
+      opening = restaurant.opening_hours
+      closing = restaurant.closing_hours + 24
+    else
+      opening = restaurant.opening_hours
+      closing = restaurant.closing_hours
+    end
+
+    puts "------------"
+    if (reservation_time < opening || reservation_time > closing)
+      flash[:notice] = "This Restaurant is closed at that time :("
+      redirect_to new_restaurant_reservation_path
+    end
 
   end
 
