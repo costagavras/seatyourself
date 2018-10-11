@@ -23,11 +23,11 @@ class ReservationsController < ApplicationController
                                    user_id: current_user.id,
                                    restaurant_id: params[:restaurant_id])
 
-    @resteraunt = Restaurant.find_by(id: params[:restaurant_id])
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
 
     if @reservation.save
         flash[:notice] = "Your reservation was made sucessfully"
-        redirect_to restaurant_reservation_path(@resteraunt ,@reservation)
+        redirect_to restaurant_reservation_path(@restaurant ,@reservation)
     else
         @reservation.errors.full_messages
         render :new
@@ -49,10 +49,11 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id;
     @reservation.restaurant_id = params[:restaurant_id];
 
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
 
     if @reservation.save
       flash[:notice] = "Your reservation was made sucessfully"
-      redirect_to reservations_path
+      redirect_to restaurant_reservation_path(@restaurant ,@reservation)
     else
       @reservation.errors.full_messages
       render :edit
