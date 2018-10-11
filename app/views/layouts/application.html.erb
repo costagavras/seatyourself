@@ -9,12 +9,17 @@
 <body>
 
 <header>
+<%= link_to "Home", root_path %>
 <% if current_user %>
   Signed in as <%= link_to current_user.email, user_path(current_user) %>
   <%= link_to "Log out", session_path("current"), :method => :delete %>
 <% else%>
   <%= link_to "Sign Up", new_user_url %>
   <%= link_to "Sign In", new_session_url %>
+<% end %>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
 <% end %>
 </header>
 

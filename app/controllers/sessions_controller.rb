@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         redirect_to root_path, notice: "Logged in!"
       end
     else
-      redirect_to new_user_path
+      render new_session_path, notice: "Not a valid username & password, please try again"
     end
   end
 
