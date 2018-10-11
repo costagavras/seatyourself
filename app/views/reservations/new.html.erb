@@ -1,3 +1,5 @@
 <h1>New Reservation</h1>
-
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
 <%= render 'reservation_form', reservation: @reservation, restaurant: @restaurant %>
