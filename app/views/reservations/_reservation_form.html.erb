@@ -1,4 +1,4 @@
-<%= form_for reservation do |f| %>
+<%= form_for [restaurant, reservation] do |f| %>
   <div class="reservation_form">
     <%= f.label :date_time %>
     <%= f.datetime_local_field :date_time %>
@@ -9,7 +9,7 @@
     <%= f.number_field :party_size %>
   </div>
 
-  <div class="reservation_form">
+  <!-- <div class="reservation_form">
     <%= f.label :user_id %>
     <%= f.number_field :user_id %>
   </div>
@@ -17,7 +17,7 @@
   <div class="reservation_form">
     <%= f.label :resteraunt_id %>
     <%= f.number_field :restaurant_id %>
-  </div>
+  </div> -->
 
   <div class="action">
     <%= f.submit %>
