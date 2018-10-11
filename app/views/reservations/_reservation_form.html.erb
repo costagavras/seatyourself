@@ -1,0 +1,25 @@
+<%= form_for reservation, url: {action: "create"} do |f| %>
+  <div class="reservation_form">
+    <%= f.label :date_time %>
+    <%= f.date_field :date_time %>
+  </div>
+
+  <div class="reservation_form">
+    <%= f.label :party_size %>
+    <%= f.number_field :party_size %>
+  </div>
+
+  <div class="reservation_form">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="reservation_form">
+    <%= f.label :resteraunt_id %>
+    <%= f.number_field :restaurant_id %>
+  </div>
+
+  <div class="reservation_form">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
