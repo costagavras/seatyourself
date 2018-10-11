@@ -37,10 +37,13 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    @reservation = Reservation.new(date_time:  params[:reservation][:date_time],
-                                   party_size: params[:reservation][:party_size],
-                                   user_id: params[:reservation][:user_id],
-                                   restaurant_id: params[:reservation][:restaurant_id])
+    @reservation = Reservation.find_by(id: params[:id])
+
+    @reservation.date_time =  params[:reservation][:date_time];
+    @reservation.party_size = params[:reservation][:party_size];
+    @reservation.user_id = params[:reservation][:user_id];
+    @reservation.restaurant_id = params[:reservation][:restaurant_id];
+
 
     if @reservation.save
       flash[:notice] = "Your reservation was made sucessfully"
@@ -52,7 +55,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    # @reservation = Reservation.find_by(id: params[:id])
+    @reservation = Reservation.find_by(id: params[:id])
 
     if @reservation.destroy
       flash[:notice] = "Your reservation was sucessfully cancelled"
