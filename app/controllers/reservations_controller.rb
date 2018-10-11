@@ -61,10 +61,11 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation = Reservation.find_by(id: params[:id])
+    @resteraunt = Restaurant.find_by(id: params[:restaurant_id])
 
     if @reservation.destroy
       flash[:notice] = "Your reservation was sucessfully cancelled"
-      redirect_to reservations_path
+      redirect_to root_path
     else
       flash[:notice] = "Something went wrong we could not delete your reservation"
       render :show
