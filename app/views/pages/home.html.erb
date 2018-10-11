@@ -1,1 +1,43 @@
 <h1>HOMEPAGE</h1>
+
+<section class="top_spots">
+  <h2>Top Spots</h2>
+
+  <% @top_spots.each do |spot| %>
+    <article class="top_spot">
+      <%= link_to image_tag(spot.picture_url), restaurant_path(spot) %>
+      <%= spot.name %>
+    </article>
+  <% end %>
+</section>
+
+<section class="categories">
+  <h2>Categories</h2>
+
+  <% @categories.each do |category| %>
+  <% if category.restaurants %>
+    <article class="top_spot">
+      <%= link_to image_tag(category.restaurants.first.picture_url), restaurants_path %>
+      <%= category.name %>
+    </article>
+  <% end %>
+  <% end %>
+</section>
+
+<section class="neighbourhoods">
+  <h2>Neighbourhoods</h2>
+
+  <% @neighbourhoods.each do |neighbourhood| %>
+  <% if neighbourhood.restaurants %>
+    <article class="top_spot">
+      <%= link_to image_tag(neighbourhood.restaurants.first.picture_url), restaurants_path %>
+      <%= neighbourhood.name %>
+    </article>
+  <% end %>
+  <% end %>
+</section>
+
+<% if current_user %>
+<h2>Your Reservations:</h2>
+  <%= render "shared/user_reservations", reservations: @reservations %>
+<% end %>

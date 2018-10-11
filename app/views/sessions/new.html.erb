@@ -2,7 +2,9 @@
 
 <%= form_for :session, url: sessions_path do |f| %>
 
+<div class="fields">
   <%= render "shared/user_form", f: f %>
+</div>
 
   <%= link_to "create an account", new_user_path, class: "signup_btn" %>
   <%= f.submit "Sign In" %>
