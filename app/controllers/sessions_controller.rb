@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'user_portal'
+
   def new
     flash[:previous_page] = request.referer
   end
@@ -13,7 +15,7 @@ class SessionsController < ApplicationController
         redirect_to root_path, notice: "Logged in!"
       end
     else
-      render new_user_path
+      redirect_to new_user_path
     end
   end
 

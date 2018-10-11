@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout 'user_portal'
+
   def new
     @user = User.new
     flash[:previous_page] = request.referer
@@ -21,6 +23,14 @@ class UsersController < ApplicationController
       end
     else
       render new_user_path
+    end
+  end
+
+  def show
+    if current_user
+      @user = current_user
+    else
+      redirect_to root_path, notice: "You must be logged in to do that!"
     end
   end
 end

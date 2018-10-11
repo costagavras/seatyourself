@@ -2,10 +2,15 @@
 
 <%= form_for(@user) do |f| %>
 
+<div class="fields">
   <% f.label :name %>
   <%= f.text_field :name, placeholder: "Name" %>
 
   <%= render "shared/user_form", f: f %>
+
+  <% f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+</div>
 
   <%= link_to "sign in", new_session_path, class: "signup_btn" %>
   <%= f.submit "Sign Up" %>
