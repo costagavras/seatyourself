@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
     #                                restaurant_id: = params[:restaurant_id])
     if @reservation.save
       flash[:notice] = "Your reservation was made sucessfully"
-                                       redirect_to resteraunt_path
+      redirect_to resteraunt_path
     else
       @reservation.errors.full_messages
       render :edit
