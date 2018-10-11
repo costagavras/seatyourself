@@ -1,3 +1,16 @@
 <h1>USER PAGE</h1>
 
-<p>Hello <%= @user.name %>
+<p>Hello <%= @user.name %></p>
+<p>E-mail: <%= @user.email %></p>
+
+<%= link_to "Edit account details", edit_user_path(@user)%>
+
+<h3>Your Reservations:</h3>
+
+<ul>
+  <% @reservations.each do |reso| %>
+    <li><%= reso.restaurant.name %> on <%= reso.date_time %> for <%= reso.party_size %> | <%= link_to "More Info", restaurant_reservation_path(reso)%></li>
+  <% end %>
+</ul>
+
+<%= link_to("Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to your account? All of your reservations will also be deleted!"}) %>
