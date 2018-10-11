@@ -8,11 +8,11 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params [:id])
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def create
-    
+
   end
 
   def update

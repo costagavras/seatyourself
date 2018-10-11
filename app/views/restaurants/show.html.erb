@@ -1,20 +1,18 @@
 <h1>Restaurant: <%= @restaurant.name %></h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+
 <%= link_to('Back to restaurants index', restaurants_path) %>
 <hr>
 <div>
   <p> Description: <%= @restaurant.name %></p>
-  <%= image_tag(picture_url) %>
+  <%= image_tag(@restaurant.picture_url) %>
+
+  <p> Summary: <%= @restaurant.summary %></p>
   <%= link_to('Website', "#") %>
-  <p> Description: <%= @restaurant.summary %></p>
-  <p> Description: <%= @restaurant.category_id %></p>
-  <p> Description: <%= @restaurant.neighbourhood %></p>
-  <p> Description: <%= @restaurant.price_range %></p>
-  <p> Description: <%= @restaurant.opening_hours %></p>
-  <p> Description: <%= @restaurant.closing_hours %></p>
-  <p> Description: <%= @restaurant.menu %></p>
-  <p> Description: <%= @restaurant.address %></p>
-  <p> Description: <%= @restaurant.address %></p>
-  <p> Description: <%= @restaurant.address %></p>
-  <p> Description: <%= @restaurant.address %></p>
+  <p> Category: <%= @restaurant.category_id %></p>
+  <p> Neighbourhood: <%= @restaurant.neighbourhood %></p>
+  <p> Price range: <%= @restaurant.price_range %></p>
+  <p> Opening hours: <%= @restaurant.opening_hours %></p>
+  <p> Closing hours: <%= @restaurant.closing_hours %></p>
+  <p> Menu: <%= @restaurant.menu %></p>
+  <p> Address: <%= @restaurant.address %></p>
 </div>
