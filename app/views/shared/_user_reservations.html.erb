@@ -1,0 +1,5 @@
+<ul>
+  <% reservations.each do |reso| %>
+    <li><%= reso.restaurant.name %> on <%= reso.date_time %> for <%= reso.party_size %> | <%= link_to "More Info", restaurant_reservation_path(reso)%></li>
+  <% end %>
+</ul>

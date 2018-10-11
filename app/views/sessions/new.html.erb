@@ -1,9 +1,5 @@
 <p>- please sign in -</p>
 
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% end %>
-
 <%= form_for :session, url: sessions_path do |f| %>
 
 <div class="fields">
