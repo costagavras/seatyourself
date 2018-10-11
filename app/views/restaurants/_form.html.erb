@@ -1,0 +1,61 @@
+<%= form_for(restaurant) do |f| %>
+
+
+<p>  <%= f.label :name %>
+  <%= f.text_field :name %> </p>
+
+<p>  <%= f.label :capacity %>
+  <%= f.number_field :capacity %> </p>
+
+<p>  <%= f.label :summary %>
+  <%= f.text_field :summary %> </p>
+
+<p>  <%= f.label :opening_hours %>
+    <%= f.number_field :opening_hours %> </p>
+
+<p>  <%= f.label :closing_hours %>
+  <%= f.number_field :closing_hours %> </p>
+
+<p>  <%= f.label :address %>
+    <%= f.text_field :address %> </p>
+
+<p><fieldset><legend>Category</legend>
+  <%= radio_button_tag(:category_id, "it") %>
+  <%= label_tag(:category_id, "Italian") %>
+  <%= radio_button_tag(:category_id, "as") %>
+  <%= label_tag(:category_id, "Asian") %>
+  <%= radio_button_tag(:category_id, "me") %>
+  <%= label_tag(:category_id, "Middle Eastern") %>
+  <%= radio_button_tag(:category_id, "cf") %>
+  <%= label_tag(:category_id, "Comfort Food") %>
+</p></fieldset>
+
+
+<p><fieldset><legend>Neighbourhood</legend>
+  <%= radio_button_tag(:neighbourhood_id, "1") %>
+  <%= label_tag(:neighbourhood_id, "Downtown") %>
+  <%= radio_button_tag(:neighbourhood_id, "2") %>
+  <%= label_tag(:neighbourhood_id, "East York") %>
+  <%= radio_button_tag(:neighbourhood_id, "3") %>
+  <%= label_tag(:neighbourhood_id, "Parkdale") %>
+  <%= radio_button_tag(:neighbourhood_id, "4") %>
+  <%= label_tag(:neighbourhood_id, "Etobicoke") %>
+</p></fieldset>
+
+<p><fieldset><legend>Price range</legend>
+  <%= radio_button_tag(:price_range, "1") %>
+  <%= label_tag(:price_range, "$") %>
+  <%= radio_button_tag(:price_range, "2") %>
+  <%= label_tag(:price_range, "$$") %>
+  <%= radio_button_tag(:price_range, "3") %>
+  <%= label_tag(:price_range, "$$$") %>
+</p></fieldset>
+
+<p>  <%= f.label :menu %>
+    <%= f.text_field :menu %> </p>
+
+<p>  <%= f.label :picture_url %>
+    <%= f.text_field :picture_url %> </p>
+
+<p> <%= f.submit "ADD"%></p>
+<% end %>
