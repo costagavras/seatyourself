@@ -10,6 +10,6 @@ validates :address, presence: { message: "field must be filled out!" }
 validates :menu, presence: { message: "field must be filled out!" }
 validates :picture_url, presence: { message: "field must be filled out!" }
 validates :capacity, numericality: {only_integer: true}, presence: { message: "field must be filled out!" }
-validates :price_range, inclusion: [1, 2, 3]
+# validates :price_range, inclusion: [1, 2, 3]
 
 end

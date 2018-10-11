@@ -36,6 +36,10 @@ Neighbourhood.create(
   name: "Mississauga"
 )
 
+Neighbourhood.create(
+  name: "Parkdale"
+)
+
   Restaurant.create!(
 capacity: 150,
 opening_hours: 12,

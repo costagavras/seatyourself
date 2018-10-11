@@ -1,7 +1,11 @@
 class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
-    @my_restaurants = Restaurant.where(:price_range => params[:price_range], :neighbourhood_id => params[:neighbourhood],:category_id => params[:category])
+    if params[:price_range] == "nada" && params[:neighbourhood] == "nada" && params[:category] == "nada"
+      @my_restaurants = Restaurant.all
+    else
+      @my_restaurants = Restaurant.where(:price_range => params[:price_range], :neighbourhood_id => params[:neighbourhood],:category_id => params[:category])
+    end
   end
 
   def new
@@ -21,11 +25,11 @@ class RestaurantsController < ApplicationController
     @restaurant.opening_hours = params[:restaurant][:opening_hours]
     @restaurant.closing_hours = params[:restaurant][:closing_hours]
     @restaurant.address = params[:restaurant][:address]
-    @restaurant.price_range = params[:restaurant][:price_range]
+    @restaurant.price_range = params[:price_range]
     @restaurant.summary = params[:restaurant][:summary]
     @restaurant.menu = params[:restaurant][:menu]
-    @restaurant.neighbourhood_id = params[:restaurant][:neighbourhood_id]
-    @restaurant.category_id = params[:restaurant][:category_id]
+    @restaurant.neighbourhood_id = params[:neighbourhood_id]
+    @restaurant.category_id = params[:category_id]
     if @restaurant.save
       # if the picture gets saved, generate a get request to "/pictures" (the index)
       flash[:notice] = "Restaurant added!"
@@ -46,16 +50,16 @@ class RestaurantsController < ApplicationController
     @restaurant.opening_hours = params[:restaurant][:opening_hours]
     @restaurant.closing_hours = params[:restaurant][:closing_hours]
     @restaurant.address = params[:restaurant][:address]
-    @restaurant.price_range = params[:restaurant][:price_range]
+    @restaurant.price_range = params[:price_range]
     @restaurant.summary = params[:restaurant][:summary]
     @restaurant.menu = params[:restaurant][:menu]
-    @restaurant.neighbourhood_id = params[:restaurant][:neighbourhood_id]
-    @restaurant.category_id = params[:restaurant][:category_id]
+    @restaurant.neighbourhood_id = params[:neighbourhood_id]
+    @restaurant.category_id = params[:category_id]
 
 
     if @restaurant.save
       flash[:notice] = "Restaurant updated !"
-      redirect_to "/restaurants/#{@restaurant.id}"
+      redirect_to restaurants_path
      else
       render :edit
     end
