@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
 
   def edit
     #display form with reservation object for user to edit
-    # @reservation = Reservation.find_by(id: params[:id])
+    @reservation = Reservation.find_by(id: params[:id])
   end
 
   def update
