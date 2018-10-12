@@ -3,16 +3,28 @@
 <%= form_for(@user) do |f| %>
 
 <div class="fields">
-  <% f.label :name %>
-  <%= f.text_field :name, placeholder: "Name" %>
+  <div class="field">
+    <% f.label :name %>
+    <%= f.text_field :name, placeholder: "Name" %>
+  </div>
 
   <%= render "shared/user_form", f: f %>
 
-  <% f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+  <div class="field">
+    <% f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+  </div>
 </div>
 
   <%= link_to "sign in", new_session_path, class: "signup_btn" %>
   <%= f.submit "Sign Up" %>
   
+<% end %>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <% @user.errors.messages.each do |k, v|%>
+      <p><%= v[0] %></p>
+    <% end %>
+  </div>
 <% end %>
