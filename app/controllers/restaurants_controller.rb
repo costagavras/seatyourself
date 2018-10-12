@@ -1,11 +1,36 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all
+    @categories = Category.all
+    @neighbourhoods = Neighbourhood.all
+
     if params[:price_range] == "nada" && params[:neighbourhood] == "nada" && params[:category] == "nada"
       @my_restaurants = Restaurant.all
+    elsif(params[:price_range] == nil && params[:neighbourhood] == nil && params[:category] == nil)
+      @my_restaurants = Restaurant.all
     else
-      @my_restaurants = Restaurant.where(:price_range => params[:price_range], :neighbourhood_id => params[:neighbourhood],:category_id => params[:category])
+      @my_restaurants = []
+
+
+      params.each do |key, value|
+        if(key == "neighbourhood" || key == "category" || key == "price_range")
+          puts "------"
+          puts "#{value}"
+
+          temp_search = Restaurant.where(key => value)
+
+
+          temp_search.each do |entry|
+            if @my_restaurants.include?(entry)
+
+            else
+              @my_restaurants << entry
+            end
+          end
+        end
+      end
+
     end
+
   end
 
   def new
@@ -70,7 +95,7 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Product.find(params[:id])
     @restaurant.destroy
     if @restaurant.destroy
       flash[:notice] = "Restaurand deleted !"
