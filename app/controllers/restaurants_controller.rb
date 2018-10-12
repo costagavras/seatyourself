@@ -13,12 +13,7 @@ class RestaurantsController < ApplicationController
 
       params.each do |key, value|
         if(key == "neighbourhood" || key == "category" || key == "price_range")
-          puts "------"
-          puts "#{value}"
-
           temp_search = Restaurant.where(key => value)
-
-
           temp_search.each do |entry|
             if @my_restaurants.include?(entry)
 
@@ -35,6 +30,8 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
+    @categories = Category.all
+    @neighbourhoods = Neighbourhood.all
   end
 
   def show

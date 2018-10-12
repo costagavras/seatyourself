@@ -19,27 +19,23 @@
 <p>  <%= f.label :address %>
     <%= f.text_field :address %> </p>
 
+
+    neighbourhoods
+
 <p><fieldset><legend>Category</legend>
-  <%= radio_button_tag(:category_id, "1") %>
-  <%= label_tag(:category_id, "Italian") %>
-  <%= radio_button_tag(:category_id, "2") %>
-  <%= label_tag(:category_id, "Asian") %>
-  <%= radio_button_tag(:category_id, "3") %>
-  <%= label_tag(:category_id, "Middle Eastern") %>
-  <%= radio_button_tag(:category_id, "4") %>
-  <%= label_tag(:category_id, "Comfort Food") %>
+
+  <% categories.each do |category| %>
+    <%= radio_button_tag(:category_id, "#{category.id}") %>
+    <%= label_tag(:category_id, "#{category.name}") %>
+  <% end %>
 </p></fieldset>
 
 
 <p><fieldset><legend>Neighbourhood</legend>
-  <%= radio_button_tag(:neighbourhood_id, "1") %>
-  <%= label_tag(:neighbourhood_id, "Downtown") %>
-  <%= radio_button_tag(:neighbourhood_id, "2") %>
-  <%= label_tag(:neighbourhood_id, "East York") %>
-  <%= radio_button_tag(:neighbourhood_id, "3") %>
-  <%= label_tag(:neighbourhood_id, "Parkdale") %>
-  <%= radio_button_tag(:neighbourhood_id, "4") %>
-  <%= label_tag(:neighbourhood_id, "Etobicoke") %>
+  <% neighbourhoods.each do |neighbourhood| %>
+    <%= radio_button_tag(:neighbourhood_id, "#{neighbourhood.id}") %>
+    <%= label_tag(:neighbourhood_id, "#{neighbourhood.name}") %>
+  <% end %>
 </p></fieldset>
 
 <p><fieldset><legend>Price range</legend>
