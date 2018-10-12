@@ -1,6 +1,8 @@
 class ReservationsController < ApplicationController
 
   before_action :find_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :verify_login, only: [:new]
+  before_action :validate_user, only: [:show, :edit, :update, :destroy]
   before_action :find_restaurant, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :check_reservation_date, only: [:create, :update]
   before_action :check_restaurant_capacity, only: [:create, :update]
@@ -21,10 +23,12 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new(date_time:  params[:reservation][:date_time],
-                                   party_size: params[:reservation][:party_size],
-                                   user_id: current_user.id,
-                                   restaurant_id: params[:restaurant_id])
+    @reservation = Reservation.new(
+      date_time:  params[:reservation][:date_time],
+      party_size: params[:reservation][:party_size],
+      user_id: current_user.id,
+      restaurant_id: params[:restaurant_id]
+    )
 
     if @reservation.save
         flash[:notice] = "Your reservation was made sucessfully"
@@ -79,11 +83,13 @@ class ReservationsController < ApplicationController
     reservation_date_time = params[:reservation][:date_time].split('T')
     reservation_date = reservation_date_time[0].split('-')
     reservation_time = reservation_date_time[1].split(':')
-    reservation_date_object = DateTime.new(reservation_date[0].to_i,
-                                           reservation_date[1].to_i,
-                                           reservation_date[2].to_i,
-                                           reservation_time[0].to_i,
-                                           reservation_time[1].to_i)
+    reservation_date_object = DateTime.new(
+      reservation_date[0].to_i,
+      reservation_date[1].to_i,
+      reservation_date[2].to_i,
+      reservation_time[0].to_i,
+      reservation_time[1].to_i
+    )
     return reservation_date_object
   end
 
@@ -140,4 +146,19 @@ class ReservationsController < ApplicationController
 
   end
 
+  private
+
+  def verify_login
+    unless current_user
+      redirect_to root_path
+      flash[:notice] = "You must be logged to do that!"
+    end
+  end
+
+  def validate_user
+    unless session[:user_id] && session[:user_id] == @reservation.user.id
+      redirect_to root_path
+      flash[:notice] = "You are not authorized to do that!"
+    end
+  end
 end
