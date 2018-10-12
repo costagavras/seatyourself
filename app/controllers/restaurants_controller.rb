@@ -1,4 +1,8 @@
 class RestaurantsController < ApplicationController
+  before_action :select_restaurant, except: [:new, :create, :index]
+  before_action :categories_neighbourhoods, only: [:new, :edit]
+  before_action :validate_user, only: [:edit, :update, :destroy]
+
   def index
     @categories = Category.all
     @neighbourhoods = Neighbourhood.all
@@ -30,12 +34,9 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
-    @categories = Category.all
-    @neighbourhoods = Neighbourhood.all
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def create
@@ -52,6 +53,7 @@ class RestaurantsController < ApplicationController
     @restaurant.menu = params[:restaurant][:menu]
     @restaurant.neighbourhood_id = params[:neighbourhood_id]
     @restaurant.category_id = params[:category_id]
+    @restaurant.user_id = session[:user_id]
     if @restaurant.save
       # if the picture gets saved, generate a get request to "/pictures" (the index)
       flash[:notice] = "Restaurant added!"
@@ -64,8 +66,6 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
-
     @restaurant.name = params[:restaurant][:name]
     @restaurant.capacity = params[:restaurant][:capacity]
     @restaurant.picture_url = params[:restaurant][:picture_url]
@@ -88,16 +88,36 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def destroy
-    @restaurant = Product.find(params[:id])
-    @restaurant.destroy
-    if @restaurant.destroy
-      flash[:notice] = "Restaurand deleted !"
-      redirect_to restaurants_path
+    if session[:user_id] == @restaurant.user.id
+      @restaurant = Product.find(params[:id])
+      @restaurant.destroy
+      if @restaurant.destroy
+        flash[:notice] = "Restaurant deleted!"
+        redirect_to restaurants_path
+      end
+    else
+      flash[:notice] = "You are not authorized to do that!"
     end
   end
 
+  private
+
+  def select_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def categories_neighbourhoods
+    @categories = Category.all
+    @neighbourhoods = Neighbourhood.all
+  end
+
+  def validate_user
+    unless session[:user_id] && @restaurant.user && session[:user_id] == @restaurant.user.id
+      redirect_to root_path
+      flash[:notice] = "You are not authorized to do that!"
+    end
+  end
 end
