@@ -1,9 +1,14 @@
 <h1>Edit <span><%=@restaurant.name%><span> page</h1>
+<%=  link_to("Back to Restaurant Page", restaurant_path(@restaurant)) %>
+<br />
 <%=  link_to("Back to Index", restaurants_path) %>
+<br />
+<%= @restaurant.errors.full_messages.first if @restaurant.errors.any? %>
 <hr>
 <!-- <p>Find me in app/views/products_controller/new.html.erb</p> -->
 
 
 <%= render 'restaurants/form', restaurant: @restaurant, categories: @categories, neighbourhoods: @neighbourhoods %>
 
-<%= @restaurant.errors.full_messages.first if @restaurant.errors.any? %>
+
+<%= link_to('Delete Restaurant', restaurant_path(@restaurant), method: :delete, data: {confirm: "Are you sure you want to your account? All of your reservations will also be deleted!"}) %>

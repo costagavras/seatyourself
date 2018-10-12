@@ -27,6 +27,10 @@ class UsersController < ApplicationController
 
   def show
     @reservations = Reservation.where(user_id: @user.id)
+
+    if @user.restaurants
+      @restaurants = @user.restaurants
+    end
   end
 
   def edit
