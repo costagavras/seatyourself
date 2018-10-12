@@ -1,33 +1,35 @@
 
 <h2>Top Spots</h2>
 <section class="top_spots row">
+
   <% @top_spots.each do |spot| %>
-    <article class="top_spot col">
-      <%= link_to image_tag(spot.picture_url), restaurant_path(spot) %>
-      <%= spot.name %>
+    <article class="top_spot col text-center">
+      <%= link_to image_tag(spot.picture_url, {:class=>"rounded img-fluid"}), restaurant_path(spot) %>
+      <h4><%= spot.name %></h4>
     </article>
   <% end %>
 </section>
 
 <h2>Categories</h2>
-<section class="categories row d-flex">
+<section class="categories row">
   <% @categories.each do |category| %>
   <% if category.restaurants %>
-    <article class="top_spot col" >
+    <article class="top_spot col text-center" >
       <%= link_to image_tag(category.restaurants.first.picture_url, {:class=>"rounded img-fluid"}), restaurants_path%>
-      <%= category.name %>
+      <h4><%= category.name %></h4>
     </article>
   <% end %>
   <% end %>
 </section>
 
+
 <h2>Neighbourhoods</h2>
 <section class="neighbourhoods row">
   <% @neighbourhoods.each do |neighbourhood| %>
   <% if neighbourhood.restaurants %>
-    <article class="top_spot col">
-      <%= link_to image_tag(neighbourhood.restaurants.first.picture_url), restaurants_path %>
-      <%= neighbourhood.name %>
+    <article class="top_spot col text-center">
+      <%= link_to image_tag(neighbourhood.restaurants.first.picture_url, {:class=>"rounded img-fluid"}), restaurants_path %>
+      <h4><%= neighbourhood.name %></h4>
     </article>
   <% end %>
   <% end %>
