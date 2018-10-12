@@ -4,6 +4,6 @@
 <!-- <p>Find me in app/views/products_controller/new.html.erb</p> -->
 
 
-<%= render 'restaurants/form', restaurant: @restaurant %>
+<%= render 'restaurants/form', restaurant: @restaurant, categories: @categories, neighbourhoods: @neighbourhoods %>
 
 <%= @restaurant.errors.full_messages.first if @restaurant.errors.any? %>
