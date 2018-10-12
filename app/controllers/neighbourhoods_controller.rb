@@ -1,6 +1,6 @@
 class NeighbourhoodsController < ApplicationController
   def index
-    @neighbours = Neighbourhood.all
+    @neighbourhoods = Neighbourhood.all
   end
 
   def show

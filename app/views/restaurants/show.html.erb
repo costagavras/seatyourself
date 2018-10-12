@@ -1,6 +1,12 @@
 <h1>Restaurant: <%= @restaurant.name %></h1>
 
-<%= link_to('Back to restaurants index', restaurants_path) %>
+
+  <li><%= link_to('Back to restaurants index', restaurants_path) %></li>
+  <br>
+  <li><%= link_to('Delete', restaurant_path, method: :delete) %></li>
+  <br>
+  <li><%= link_to('Make a reservation', new_restaurant_reservation_path(@restaurant, @reservation)) %></li>
+
 <hr>
 <div>
   <p> Description: <%= @restaurant.name %></p>

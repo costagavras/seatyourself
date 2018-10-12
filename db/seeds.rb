@@ -22,6 +22,10 @@ Category.create(
 )
 
 Category.create(
+  name: "Middle Eastern"
+)
+
+Category.create(
   name: "Comfort Food"
 )
 

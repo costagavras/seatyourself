@@ -15,10 +15,9 @@
       <label for="neighbourhood_restaurant">Neighbourhood</label>
       <select id="neighbourhood_restaurant" name="neighbourhood">
         <option value="nada">Please choose a neighbourhood...</option>
-        <option value="1">Downtown</option>
-        <option value="2">East York</option>
-        <option value="3">Parkdale</option>
-        <option value="4">Etobicoke</option>
+        <% @neighbourhoods.each do |neighbourhood| %>
+          <option value="<%=neighbourhood.id%>"> <%="#{neighbourhood.name}"%> </option>
+        <% end %>
       </select>
     </div>
     <div class="dd_price_range">
@@ -48,7 +47,7 @@
         <%= image_tag(restaurant.picture_url) %>
         <h3><%=link_to("#{restaurant.name}","/restaurants/#{restaurant.id}")%></h3>
         <h3><%=restaurant.summary%></h3>
-        <h3><%=restaurant.neighbourhood%></h3>
+        <h3><%=restaurant.neighbourhood_id%></h3>
         <h3><%=restaurant.category_id%></h3>
         <h3><%=restaurant.price_range%></h3>
       </li>
