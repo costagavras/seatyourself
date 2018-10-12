@@ -33,7 +33,9 @@
   <% end %>
 </section>
 
-<h2>Your Reservations:</h2>
-<% if current_user %>
+<br />
+
+<% if current_user && User.find(session[:user_id]).reservations.length > 0 %>
+  <h2>Your Reservations:</h2>
   <%= render "shared/user_reservations", reservations: @reservations %>
 <% end %>

@@ -56,6 +56,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
+    @reservations = Reservation.where(restaurant_id: @restaurant.id)
   end
 
   def create
@@ -110,15 +111,11 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    if session[:user_id] == @restaurant.user.id
-      @restaurant = Product.find(params[:id])
-      @restaurant.destroy
-      if @restaurant.destroy
-        flash[:notice] = "Restaurant deleted!"
-        redirect_to restaurants_path
-      end
-    else
-      flash[:notice] = "You are not authorized to do that!"
+    @restaurant.reservations.destroy_all
+    @restaurant.destroy
+    if @restaurant.destroy
+      flash[:notice] = "Restaurant deleted!"
+      redirect_to restaurants_path
     end
   end
 

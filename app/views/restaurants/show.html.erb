@@ -4,8 +4,6 @@
   <li><%= link_to('Back to restaurants index', restaurants_path) %></li>
   <br>
   <% if session[:user_id] && @restaurant.user && session[:user_id] == @restaurant.user.id %>
-    <li><%= link_to 'Delete', restaurant_path, method: :delete %></li>
-    <br>
     <li><%= link_to 'Edit Details', edit_restaurant_path(@restaurant) %></li>
     <br>
   <% end %>
@@ -29,3 +27,14 @@
   <p> Menu: <%= @restaurant.menu %></p>
   <p> Address: <%= @restaurant.address %></p>
 </div>
+
+<% if session[:user_id] && @reservations.where(user_id: session[:user_id]).length > 0 %>
+  <div class="user_restaurant_reservations">
+    <h3>Your Reservations Here:</h3>
+    <ul>
+      <% @reservations.each do |reservation| %>
+        <li><%= reservation.date_time %> for <%= reservation.party_size %> | <%= link_to "More Info", restaurant_reservation_path(reservation.restaurant_id, reservation)%></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
