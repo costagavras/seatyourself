@@ -10,3 +10,7 @@
 <%= render "shared/user_reservations", reservations: @reservations %>
 
 <%= link_to("Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to your account? All of your reservations will also be deleted!"}) %>
+
+<h3>Your Restaurants:</h3>
+
+<%= link_to "Add new restaurant", new_restaurant_path(@user)%>

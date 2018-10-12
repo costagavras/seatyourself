@@ -37,6 +37,10 @@
   </div>
 </form>
 
+<% if flash[:search_result] %>
+  <h3 class="search_result"><%= flash[:search_result] %></h3>
+<% end %>
+
 <hr>
 <div>
   <% @my_restaurants.each do |restaurant|%>
