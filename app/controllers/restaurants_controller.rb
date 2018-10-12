@@ -24,6 +24,25 @@ class RestaurantsController < ApplicationController
         end
       end
 
+    @filter_search = []
+    params.each do |key, value|
+      if key == "category" && value != "nada"
+        @filter_search << Category.find_by(id: value).name
+        @text_category = " restaurants,"
+      elsif key == "neighbourhood" && value != "nada"
+        @filter_search << Neighbourhood.find_by(id: value).name
+        @text_neighbourhood = " neighbourhood,"
+      elsif key == "price_range" && value != "nada"
+        @filter_search << "$" * value.to_i
+        @text_price_range = "price range"
+      end
+    end
+
+    if @filter_search != []
+      flash[:search_result] = "Your searched: #{@filter_search[0]} #{@text_category} #{@filter_search[1]} #{@text_neighbourhood} #{@filter_search[2]} #{@text_price_range}"
+    end
+    @filter_search = []
+
     end
 
   end
@@ -92,7 +111,7 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Product.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
     if @restaurant.destroy
       flash[:notice] = "Restaurand deleted !"
