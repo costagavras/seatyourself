@@ -1,8 +1,7 @@
-<h1>RESTAURANT VIEW (INDEX LIST)</h1>
+<h1 class="text-center">RESTAURANT VIEW (INDEX LIST)</h1>
 
 <form action="/restaurants" method="get">
-  <div class="drop_downs">
-    </div>
+
     <div class="dd_category">
       <label for="category_restaurant">Category</label>
       <select id="category_restaurant" name="category">
@@ -11,7 +10,9 @@
           <option value="<%=category.id%>"> <%="#{category.name}"%> </option>
         <% end %>
       </select>
-    </div class="dd_neighbourhood">
+    </div>
+
+    <div class="dd_neighbourhood">
       <label for="neighbourhood_restaurant">Neighbourhood</label>
       <select id="neighbourhood_restaurant" name="neighbourhood">
         <option value="nada">Please choose a neighbourhood...</option>
@@ -20,6 +21,7 @@
         <% end %>
       </select>
     </div>
+
     <div class="dd_price_range">
       <label for="price_range_restaurant">Price range</label>
       <select id="price_range_restaurant" name="price_range">
@@ -29,32 +31,43 @@
         <option value="1">Low</option>
       </select>
     </div>
-  </div>
+
   <div>
-    <button type="submit">
+    <button type="submit" class="btn btn-primary">
       <h3>Search!</h3>
     </button>
   </div>
+
 </form>
 
-<% if flash[:search_result] %>
-  <h3 class="search_result"><%= flash[:search_result] %></h3>
-<% end %>
+<div class="container">
+  <div class="well">
+  <% if flash[:search_result] %>
+    <h3 class="search_result"><%= flash[:search_result] %></h3>
+  <% end %>
+  </div>
+</div>
 
 <hr>
-<div>
-  <% @my_restaurants.each do |restaurant|%>
-    <ul>
+<div class="container">
+  <div class="row">
+    <% @my_restaurants.each do |restaurant|%>
+      <ul>
       <li>
-        <h3><%=restaurant.name%></h3>
-        <%= image_tag(restaurant.picture_url) %>
+        <hr>
         <h3><%=link_to("#{restaurant.name}","/restaurants/#{restaurant.id}")%></h3>
+        <hr>
+        <br>
+        <%= image_tag(restaurant.picture_url) %>
+        <br>
+        <br>
         <h3><%=restaurant.summary%></h3>
-        <h3><%=restaurant.neighbourhood_id%></h3>
-        <h3><%=restaurant.category_id%></h3>
-        <h3><%=restaurant.price_range%></h3>
+        <h3>Neighbourhood: <%=restaurant.neighbourhood.name%></h3>
+        <h3>Category: <%=restaurant.category.name%></h3>
+        <h3>Price: <%="$" * restaurant.price_range.to_i%></h3>
       </li>
       <br>
-    </ul>
-  <%end%>
+      </ul>
+    <%end%>
+  </div>
 </div>
