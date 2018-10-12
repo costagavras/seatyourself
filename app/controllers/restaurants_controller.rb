@@ -32,10 +32,10 @@ class RestaurantsController < ApplicationController
     params.each do |key, value|
       if key == "category" && value != "nada"
         @filter_search << Category.find_by(id: value).name
-        @text_category = " restaurants,"
+        @text_category = " restaurants"
       elsif key == "neighbourhood" && value != "nada"
         @filter_search << Neighbourhood.find_by(id: value).name
-        @text_neighbourhood = " neighbourhood,"
+        @text_neighbourhood = " neighbourhood"
       elsif key == "price_range" && value != "nada"
         @filter_search << "$" * value.to_i
         @text_price_range = "price range"
