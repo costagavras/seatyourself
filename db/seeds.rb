@@ -344,21 +344,20 @@ neighbourhood_id: Neighbourhood.find_by(name: "Kensington Market").id)
 
 
 ###Stephen Adding Reservation Seeds###
-date_time1 = DateTime.new(2018,10,10,4,50,0)
-Reservation.create(date_time: date_time1,
-                   party_size: 5,
-                   user_id: User.first.id,
-                   restaurant_id: Restaurant.first.id)
-
-date_time2 = DateTime.new(2018,10,12,4,50,0)
-Reservation.create(date_time: date_time2,
-                   party_size: 7,
-                   user_id: User.first.id,
-                   restaurant_id: Restaurant.first.id)
-
-date_time3 = DateTime.new(2018,10,11,4,50,0)
-Reservation.create(date_time: date_time3,
-                   party_size: 7,
-                   user_id: User.first.id,
-                   restaurant_id: Restaurant.first.id)
-  
+# date_time1 = DateTime.new(2018,10,10,4,50,0)
+# Reservation.create(date_time: date_time1,
+#                    party_size: 5,
+#                    user_id: User.first.id,
+#                    restaurant_id: Restaurant.first.id)
+#
+# date_time2 = DateTime.new(2018,10,12,4,50,0)
+# Reservation.create(date_time: date_time2,
+#                    party_size: 7,
+#                    user_id: User.first.id,
+#                    restaurant_id: Restaurant.first.id)
+#
+# date_time3 = DateTime.new(2018,10,11,4,50,0)
+# Reservation.create(date_time: date_time3,
+#                    party_size: 7,
+#                    user_id: User.first.id,
+#                    restaurant_id: Restaurant.first.id)
