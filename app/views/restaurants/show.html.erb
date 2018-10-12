@@ -3,9 +3,16 @@
 
   <li><%= link_to('Back to restaurants index', restaurants_path) %></li>
   <br>
-  <li><%= link_to('Delete', restaurant_path, method: :delete) %></li>
-  <br>
-  <li><%= link_to('Make a reservation', new_restaurant_reservation_path(@restaurant, @reservation)) %></li>
+  <% if session[:user_id] && @restaurant.user && session[:user_id] == @restaurant.user.id %>
+    <li><%= link_to 'Delete', restaurant_path, method: :delete %></li>
+    <br>
+    <li><%= link_to 'Edit Details', edit_restaurant_path(@restaurant) %></li>
+    <br>
+  <% end %>
+  
+  <% if current_user %>
+    <li><%= link_to('Make a reservation', new_restaurant_reservation_path(@restaurant, @reservation)) %></li>
+  <% end %>
 
 <hr>
 <div>

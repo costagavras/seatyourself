@@ -326,7 +326,7 @@ category_id: Category.find_by(name: "German").id,
 neighbourhood_id: Neighbourhood.find_by(name: "Kensington Market").id)
 
 Restaurant.create!(
-name: "Urban Herbivore",
+name: "Hibiscus Cafe",
 capacity: 30,
 opening_hours: 11,
 closing_hours: 18,
@@ -336,24 +336,31 @@ summary: "Cozy vegetarian eatery with a patio, offering sweet & savory crêpes, 
 menu: "http://hibiscuscafe.ca/#menu",
 picture_url: "http://jpress.journalism.ryerson.ca/munchoutto/files/2013/10/DSC05177.jpg",
 category_id: Category.find_by(name: "Vegan").id,
-neighbourhood_id: Neighbourhood.find_by(name: "Kensington Market").id)
+neighbourhood_id: Neighbourhood.find_by(name: "Kensington Market").id,
+user_id: User.first)
 
 
 ###Stephen Adding Reservation Seeds###
-# date_time1 = DateTime.new(2018,10,10,4,50,0)
-# Reservation.create(date_time: date_time1,
-#                    party_size: 5,
-#                    user_id: User.first.id,
-#                    restaurant_id: Restaurant.first.id)
-#
-# date_time2 = DateTime.new(2018,10,12,4,50,0)
-# Reservation.create(date_time: date_time2,
-#                    party_size: 7,
-#                    user_id: User.first.id,
-#                    restaurant_id: Restaurant.first.id)
-#
-# date_time3 = DateTime.new(2018,10,11,4,50,0)
-# Reservation.create(date_time: date_time3,
-#                    party_size: 7,
-#                    user_id: User.first.id,
-#                    restaurant_id: Restaurant.first.id)
+date_time1 = DateTime.new(2018,10,10,4,50,0)
+Reservation.create(
+  date_time: date_time1,
+  party_size: 5,
+  user_id: User.first.id,
+  restaurant_id: Restaurant.first.id
+)
+
+date_time2 = DateTime.new(2018,10,12,4,50,0)
+Reservation.create(
+  date_time: date_time2,
+  party_size: 7,
+  user_id: User.first.id,
+  restaurant_id: Restaurant.first.id
+)
+
+date_time3 = DateTime.new(2018,10,11,4,50,0)
+Reservation.create(
+  date_time: date_time3,
+  party_size: 7,
+  user_id: User.first.id,
+  restaurant_id: Restaurant.first.id
+)
